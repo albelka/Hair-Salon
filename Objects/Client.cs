@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace HairSalon.Objects
+namespace HairSalon
 {
   public class Client
   {
@@ -12,11 +12,39 @@ namespace HairSalon.Objects
     public int Id {get; set;}
     // private List<string> TEMPLATE = new List<string> {};
 
-    public Restaurant(string name, int stylistId = 0, int id = 0)
+    public Client(string name, int stylistId = 0, int id = 0)
     {
       this.Name = name;
       this.StylistId = stylistId;
       this.Id = id;
+    }
+    public static List<Client> GetAll()
+    {
+      List<Client> allClients = new List<Client>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientName = rdr.GetString(1);
+        int clientStylistId = rdr.GetInt32(2);
+        Client newClient = new Client(clientName, clientStylistId, clientId);
+        allClients.Add(newClient);
+      }
+      if(rdr!=null)
+      {
+        rdr.Close();
+      }
+      if(conn!=null)
+      {
+        conn.Close();
+      }
+      return allClients;
     }
   }
 }

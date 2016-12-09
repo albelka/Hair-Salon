@@ -11,7 +11,7 @@ namespace HairSalon.Objects
     public string Availability {get; set;}
     public int Id {get; set;}
 
-    public Cuisine(string name, string availability, int id = 0)
+    public Stylist(string name, string availability, int id = 0)
     {
       this.Name = name;
       this.Availability = availability;
