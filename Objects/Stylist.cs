@@ -82,7 +82,7 @@ namespace HairSalon
       SqlParameter availabilityParameter = new SqlParameter();
       availabilityParameter.ParameterName = "@StylistAvailability";
       availabilityParameter.Value = this.Availability;
-      
+
       cmd.Parameters.Add(availabilityParameter);
       cmd.Parameters.Add(nameParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -99,6 +99,41 @@ namespace HairSalon
       {
         conn.Close();
       }
+    }
+
+    public Stylist Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM  stylists WHERE id =@StylistId;", conn);
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = id.ToString();
+
+      cmd.Parameters.Add(stylistIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundId = 0;
+      string foundName = null;
+      string foundAvailability = null;
+
+      while(rdr.Read())
+      {
+        foundId = rdr.GetInt32(0);
+        foundName = rdr.GetString(1);
+        foundAvailability = rdr.GetString(2);
+      }
+      Stylist foundStylist = new Stylist(foundName, foundAvailability, foundId);
+      if(rdr!=null)
+      {
+        rdr.Close();
+      }
+      if(conn!=null)
+      {
+        conn.Close();
+      }
+      return foundStylist;
     }
     public static void DeleteAll()
     {
