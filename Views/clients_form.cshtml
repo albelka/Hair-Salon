@@ -1,0 +1,16 @@
+<h1>My Hair Salon</h1>
+<h3>Add a new client:</h3>
+<form action='/clients/new' method='post'>
+  <label for='client-name'>Client Name:</label>
+  <input id='client-name' name='client-name' type='text'>
+  <select name="stylist">
+    @foreach (var stylist in Model)
+    {
+      <option value="@stylist.Id">@stylist.Name</option>
+    }
+  </select>
+
+  <button type='submit'>Add new client</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/tasks">View all clients</a></p>

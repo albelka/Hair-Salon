@@ -101,7 +101,7 @@ namespace HairSalon
       }
     }
 
-    public Stylist Find(int id)
+    public static Stylist Find(int id)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();

@@ -56,7 +56,7 @@ namespace HairSalon
     {
       Client newClient = new Client("Mrs. C", 1, 1);
       newClient.Save();
-      Client foundClient = newClient.Find(newClient.Id);
+      Client foundClient = Client.Find(newClient.Id);
 
       Assert.Equal(newClient, foundClient);
     }

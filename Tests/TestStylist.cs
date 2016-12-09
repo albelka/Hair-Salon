@@ -59,7 +59,7 @@ namespace HairSalon
       Stylist newStylist = new Stylist("Frieda", "MWF", 1);
 
       newStylist.Save();
-      Stylist foundStylist = newStylist.Find(newStylist.Id);
+      Stylist foundStylist = Stylist.Find(newStylist.Id);
 
       Assert.Equal(newStylist, foundStylist);
     }
