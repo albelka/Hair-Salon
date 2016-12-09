@@ -54,7 +54,7 @@ namespace HairSalon
       {
         int stylistId = rdr.GetInt32(0);
         string stylistName = rdr.GetString(1);
-        string stylistAvailability = rdr.GetString(1);
+        string stylistAvailability = rdr.GetString(2);
         Stylist newStylist = new Stylist(stylistName, stylistAvailability, stylistId);
         allStylists.Add(newStylist);
       }
@@ -67,6 +67,46 @@ namespace HairSalon
         conn.Close();
       }
       return allStylists;
+    }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, availability) OUTPUT INSERTED.id VALUES (@StylistName, @StylistAvailability);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@StylistName";
+      nameParameter.Value = this.Name;
+
+      SqlParameter availabilityParameter = new SqlParameter();
+      availabilityParameter.ParameterName = "@StylistAvailability";
+      availabilityParameter.Value = this.Availability;
+      
+      cmd.Parameters.Add(availabilityParameter);
+      cmd.Parameters.Add(nameParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      cmd.ExecuteReader();
+      conn.Close();
     }
   }
 }

@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  public class StylistTest// : IDisposable
+  public class StylistTest : IDisposable
   {
     public StylistTest()
     {
@@ -27,6 +27,36 @@ namespace HairSalon
       Stylist secondStylist = new Stylist("Frieda", "MWF", 1);
 
       Assert.Equal(firstStylist, secondStylist);
+    }
+
+    [Fact]
+    public void Test_Save_SavesToDatabase()
+    {
+      Stylist newStylist = new Stylist("Frieda", "MWF", 1);
+
+      newStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{newStylist};
+
+      Assert.Equal(testList, result);
+    }
+    [Fact]
+    public void Test_Save_AssignsIdToObject()
+    {
+      Stylist newStylist = new Stylist("Frieda", "MWF", 1);
+
+      newStylist.Save();
+      Stylist savedStylist = Stylist.GetAll()[0];
+
+      int result = savedStylist.Id;
+      int testId = newStylist.Id;
+
+      Assert.Equal(testId, result);
+    }
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
+
     }
   }
 }
