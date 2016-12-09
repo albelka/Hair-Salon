@@ -18,6 +18,23 @@ namespace HairSalon
       this.StylistId = stylistId;
       this.Id = id;
     }
+    public override bool Equals(System.Object otherClient)
+    {
+      if(!(otherClient is Client))
+      {
+        return false;
+      }
+      else
+      {
+        Client newClient = (Client) otherClient;
+        bool idEquality = this.Id == newClient.Id;
+        bool nameEquality = this.Id == newClient.Id;
+        bool stylistIdEquality = this.StylistId ==newClient.StylistId;
+
+        return(idEquality && nameEquality && stylistIdEquality);
+      }
+    }
+
     public static List<Client> GetAll()
     {
       List<Client> allClients = new List<Client>{};
