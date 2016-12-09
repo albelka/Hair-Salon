@@ -18,6 +18,28 @@ namespace HairSalon
       this.Id = id;
     }
 
+    public override bool Equals(System.Object otherStylist)
+    {
+      if(!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = this.Id == newStylist.Id;
+        bool nameEquality = this.Id == newStylist.Id;
+        bool availabilityEquality = this.Availability ==newStylist.Availability;
+
+        return(nameEquality && availabilityEquality && idEquality);
+      }
+    }
+    public override int GetHashCode()
+    {
+         return this.Name.GetHashCode();
+    }
+
+
     public static List<Stylist> GetAll()
     {
       List<Stylist> allStylists = new List<Stylist>{};
