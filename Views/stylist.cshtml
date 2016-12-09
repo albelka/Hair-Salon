@@ -1,12 +1,9 @@
 <h3>@Model["stylist"].Name</h3><br>
 
-<h2>is available: @Model["stylist"].Availability</h2><br> -->
+<h2>is available: @Model["stylist"].Availability</h2><br>
 
-@if(@Model["clients"]!=null)
-{
-  <h2>current clients:<
-    foreach(client in @Model["clients"])
-    <li>@Model["clients"].Name</li>
-
-  </h2>
-}
+  <h2>current clients:</h2>
+    @foreach(var client in @Model["clients"])
+    {
+      <li>client.Name</li>
+    }
