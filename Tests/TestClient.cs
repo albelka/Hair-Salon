@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  public class ClientTest// : IDisposable
+  public class ClientTest : IDisposable
   {
     public ClientTest()
     {
@@ -38,6 +38,24 @@ namespace HairSalon
 
       Assert.Equal(testList, result);
     }
+    [Fact]
+    public void Test_Save_AssignsIdToObject()
+    {
+      Client newClient = new Client("Mrs. C", 1, 1);
+
+      newClient.Save();
+      Client savedClient = Client.GetAll()[0];
+
+      int result = savedClient.Id;
+      int testId = newClient.Id;
+
+      Assert.Equal(testId, result);
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
+    }
+
 
   }
 }
