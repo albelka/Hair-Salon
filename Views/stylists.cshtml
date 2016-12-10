@@ -19,7 +19,7 @@
       <ul>
         @foreach(var stylist in Model)
         {
-          <li><h3><a href='/stylists/@stylist.Id'>@stylist.Name</a></h3></li>
+          <li><h3><a href='/stylists/@stylist.Id'>@stylist.Name</a> | <a href="/stylist/edit/@stylist.Id">Edit</a> | <a href="/stylist/delete/@stylist.Id">Delete<a/></h3></li>
         }
       </ul><br>
 

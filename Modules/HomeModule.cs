@@ -53,8 +53,24 @@ namespace HairSalon
           model.Add("clients", stylistClientsList);
           return View["stylist.cshtml", model];
         };
-
-
+        Get["/stylist/edit/{id}"] = parameters => {
+          Stylist selectedStylist = Stylist.Find(parameters.id);
+          return View["stylist_edit.cshtml", selectedStylist];
+        };
+        Patch["stylist/edit/{id}"] = parameters => {
+          Stylist selectedStylist = Stylist.Find(parameters.id);
+          selectedStylist.UpdateName(Request.Form["stylist-name"]);
+          return View["success.cshtml"];
+        };
+        Get["stylist/delete/{id}"] = parameters => {
+          Stylist selectedStylist = Stylist.Find(parameters.id);
+          return View["stylist/_delete.cshtml", selectedStylist];
+        };
+        Delete["stylist/delete/{id}"] = parameters => {
+          Stylist selectedStylist = Stylist.Find(parameters.id);
+          selectedStylist.Delete();
+          return View["success.cshtml"];
+        };
       }
   }
 }
