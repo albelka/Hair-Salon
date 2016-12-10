@@ -37,13 +37,13 @@
 
 ## Setup/Installation Requirements
 * In SQLCMD:
-CREATE DATABASE hair_salon;
-GO
-USE hair_salon;
-GO
-CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT);
-CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), availability VARCHAR(255));
-GO
+* >CREATE DATABASE hair_salon;
+* >GO
+* >USE hair_salon;
+* >GO
+* >CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT);
+* >CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), availability VARCHAR(255));
+* >GO
 
 * Clone this repository or download it to your computer.
 * Navigate to the project directory in the terminal.
