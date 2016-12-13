@@ -73,9 +73,23 @@ namespace HairSalon
       List<Client> result = new List<Client> {newClient};
 
       Assert.Equal(result, allClients);
-
     }
+    [Fact]
+    public void Test_UpdateName_UpdatesClientNameInDatabase()
+    {
+      //Arrange
+      Client testClient = new Client("Mrs. C", 1, 1);
+      testClient.Save();
+      string newName = "Mrs. Cauliflower";
 
+      //Act
+      testClient.UpdateName(newName);
+
+      string result = testClient.Name;
+
+      //Assert
+      Assert.Equal(newName, result);
+    }
     public void Dispose()
     {
       Client.DeleteAll();

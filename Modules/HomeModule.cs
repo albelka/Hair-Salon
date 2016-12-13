@@ -73,7 +73,7 @@ namespace HairSalon
         };
         Get["/client/delete/{id}"] = parameters => {
           Client selectedClient = Client.Find(parameters.id);
-          return View["/client_delete.cshtml",selectedClient];
+          return View["/client_delete.cshtml", selectedClient];
         };
         Delete["/client/delete/{id}"] = parameters => {
           Client selectedClient = Client.Find(parameters.id);
