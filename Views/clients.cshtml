@@ -7,7 +7,7 @@ else{
   <ul>
   @foreach (var client in Model)
   {
-    <li>@client.Name</li>
+    <li><h3>@client.Name |  <a href="/client/delete/@client.Id">Delete<a/></h3></li>
   }
   </ul>
   <form action="/clients/delete" method ="post">
