@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
-    <title>My Hair Salon</title>
-  </head>
-  <body>
-    <div class="jumbotron">
-      <h1>My Hair Salon</h1>
-    </div>
-    <div class="container">
-      <h2>Add new stylist to your list</h2><br>
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
 
-        <form action="/stylists/new" method="post">
-          <label for="name">Enter the stylist's name:</label>
-          <input type="text" name="name">
+<h2>Add new stylist to your list</h2><br>
 
-          <label for="availability">Enter the stylist's availability:</label>
-          <input type="text" name="availability">
+  <form action="/stylists/new" method="post">
+    <label for="name">Enter the stylist's name:</label>
+    <input type="text" name="name">
 
-          <button type="submit">Add</button>
-        </form>
-      <h5><a href="/">Home</a></h5><br>
-    </div>
-  </body>
-</html>
+    <label for="availability">Enter the stylist's availability:</label>
+    <input type="text" name="availability">
+
+    <button type="submit">Add</button>
+  </form>
+<h5><a href="/">Home</a></h5><br>}

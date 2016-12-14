@@ -1,5 +1,6 @@
-<h1>My Hair Salon</h1>
-<hr />
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
 <h2>Edit client: @Model.Name</h2>
 <form action="/client/edit/@Model.Id" method="post">
   <input type="hidden" name="_method" value="PATCH">
